@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import alertReducer from "../redux/alertRedux";
+import listReducer from "../redux/listRedux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 const persistConfig = {
@@ -9,6 +10,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   alerts: alertReducer,
+  todolist : listReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

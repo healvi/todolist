@@ -1,7 +1,22 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
+import { delList, getList } from "../redux/listRedux";
 
 const Home = () => {
+  const dispacth = useDispatch();
+  const todolist = useSelector((state) => state.todolist.list);
+  useEffect(() => {
+    dispacth(getList());
+  }, []);
+  useEffect(() => {
+    console.log(todolist);
+  }, [todolist]);
+
+  const deleteList = (id) => {
+    dispacth(delList(id));
+  };
   return (
     <div className="container">
       <div className="row">
@@ -16,7 +31,7 @@ const Home = () => {
                   className="icon-sort"
                   src="./assets/image/tabler_plus.svg"
                   alt=""
-                ></img>{" "}
+                ></img>
                 Tambah
               </button>
             </div>
@@ -24,10 +39,15 @@ const Home = () => {
         </div>
         <div className="col-12">
           <div className="row">
-            <Card></Card>
-            <div className="col-12">
-              <img alt="" src="./assets/image/activity-empty-state.svg" />
-            </div>
+            {todolist.length ? (
+              todolist?.map((v, i) => (
+                <Card key={i} data={v} deleteList={deleteList}></Card>
+              ))
+            ) : (
+              <div className="col-12">
+                <img alt="" src="./assets/image/activity-empty-state.svg" />
+              </div>
+            )}
           </div>
         </div>
       </div>

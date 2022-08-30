@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav class="navbar">
+    <nav className="navbar">
       <div
         className="container navbar-header d-flex align-items-center"
         data-cy="header-background"

@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store, persistor } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import 'bootstrap/dist/css/bootstrap.css';
+import "@popperjs/core"; 
+import "bootstrap";
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 const root = ReactDOM.createRoot(document.getElementById('root'));

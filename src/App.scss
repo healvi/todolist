@@ -1,4 +1,5 @@
 @import "./variabel";
+@import "~bootstrap/scss/bootstrap.scss";
 @include google-font(
   "Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,900&display=swap"
 );
@@ -23,6 +24,11 @@ body {
 h1[data-cy="activity-title"], h1[data-cy="todo-title"] {
   font-weight: 700 !important;
   @include font-semi-large;
+  margin: 0;
+}
+
+[data-cy="activity-item-delete-button"],[data-cy="todo-item-delete-button"]  {
+  cursor: pointer;
 }
 
 button[data-cy="activity-add-button"] {
@@ -70,4 +76,97 @@ div[data-cy="activity-item"] {
   padding: 0;
   font-size: 14px;
 line-height: 21px;
+}
+
+.icon-sort {
+  width: 24px;
+    height: 24px;
+}
+
+.detail-content .content-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 27px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
+}
+
+.form-check {
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.125rem;
+}
+
+.label-indicator {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  margin: 0 19px 0 7px;
+}
+
+.very-high {
+  background-color: $MainVeryHighBrand;
+}
+.high {
+  background-color: $MainHighBrand;
+}
+.normal {
+  background-color: $MainNormalBrand;
+}
+.low {
+  background-color: $MainLowBrand;
+}
+.very-low {
+  background-color: $MainVeryLowBrand;
+}
+
+.modal-add-activity .modal-content .modal-body {
+  padding: 38px 41px 38px 30px !important;
+
+}
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+.modal-content .modal-header {
+  height: 70px;
+  padding: 24px 30px;
+}
+.modal-add-activity .modal-content .modal-body label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 9px;
+  border-radius: 6px;
+}
+.modal-add-activity .modal-content .modal-body .form-control {
+  height: 52px;
+  margin-bottom: 26px;
+}
+
+.modal-add-activity .modal-content .modal-header .h4, .modal-add-activity .modal-content .modal-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.dropdown-toggle,.dropdown {
+  width: 205px !important;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
