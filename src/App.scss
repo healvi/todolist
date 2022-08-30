@@ -1,0 +1,73 @@
+@import "./variabel";
+@include google-font(
+  "Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,900&display=swap"
+);
+
+body {
+  font-family: Poppins, Times, serif !important;
+  background-color: #E5E5E5 !important;
+}
+.container {
+  max-width: 1000px !important;
+}
+.navbar {
+  height: 105px;
+  background-color: $MainBlueBrand !important;
+  color: white;
+  h2[data-cy="header-title"] {
+    font-weight: 700;
+    @include font-medium;
+  }
+}
+
+h1[data-cy="activity-title"], h1[data-cy="todo-title"] {
+  font-weight: 700 !important;
+  @include font-semi-large;
+}
+
+button[data-cy="activity-add-button"] {
+  @include font-semi-medium;
+  font-weight: 600;
+  width: 159px;
+  height: 54px;
+  background: $MainBlueBrand !important;
+  border-radius: 45px;
+}
+
+div[data-cy="activity-item"] {
+  width: 235px;
+  height: 234px;
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 22px 27px;
+  h4[data-cy="activity-item-title"] {
+    font-weight: 700 !important;
+    @include font-semi-medium;
+  }
+}
+
+.activity-body {
+  cursor: pointer;
+    height: 158px;
+}
+.btn-sort {
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+  background-color: transparent;
+  height: 54px;
+  width: 54px;
+  margin-right: 18px;
+}
+.card-footer {
+  z-index: 2;
+  bottom: 25px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  border: 0;
+  width: 100%;
+  padding: 0;
+  font-size: 14px;
+line-height: 21px;
+}
