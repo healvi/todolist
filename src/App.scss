@@ -27,7 +27,7 @@ h1[data-cy="activity-title"], h1[data-cy="todo-title"] {
   margin: 0;
 }
 
-[data-cy="activity-item-delete-button"],[data-cy="todo-item-delete-button"]  {
+[data-cy="activity-item-delete-button"], [data-cy="todo-item-edit-button"],[data-cy="todo-item-delete-button"]  {
   cursor: pointer;
 }
 
@@ -39,7 +39,10 @@ button[data-cy="activity-add-button"] {
   background: $MainBlueBrand !important;
   border-radius: 45px;
 }
-
+.todo-done {
+  text-decoration: line-through;
+  color: #888;
+}
 div[data-cy="activity-item"] {
   width: 235px;
   height: 234px;

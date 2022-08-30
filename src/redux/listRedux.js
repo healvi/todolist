@@ -85,7 +85,7 @@ const delItem = (idItems, idList) => async (dispatch) => {
       });
   };
 
-const creaateItem = (data, idList) => async (dispatch) => {
+const createItem = (data, idList) => async (dispatch) => {
     
     await axioscall
       .post(`/todo-items`, {
@@ -100,9 +100,24 @@ const creaateItem = (data, idList) => async (dispatch) => {
       });
   };
 
+
+const updateItem = (data, idList) => async (dispatch) => {
+    
+    await axioscall
+      .patch(`/todo-items/${data.id}`, {
+        ...data
+      })
+      .then((response) => {
+        dispatch(getListItem(idList));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
 const setDoneList = (list) => (dispatch) => {
   dispatch(setDoneListGlobal(list));
 };
-export {creaateItem, getList, setDoneList, delList, getDetailList, getListItem, delItem };
+export {updateItem, createItem, getList, setDoneList, delList, getDetailList, getListItem, delItem };
 export const { setItemsGlobal,setListGlobal, setDoneListGlobal, setDetailsListGlobal } = listReducer.actions;
 export default listReducer.reducer;

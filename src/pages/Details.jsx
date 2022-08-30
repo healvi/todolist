@@ -1,17 +1,22 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Lists from "../components/Lists";
 import Modal from "../components/Modal";
 import {
-  creaateItem,
+  createItem,
   delItem,
-  delList,
   getDetailList,
+  updateItem,
 } from "../redux/listRedux";
 
 const Details = () => {
   const dispacth = useDispatch();
+  const [update, setIsUpdate] = useState({
+    isUpdate: false,
+    data: {},
+  });
   const detailList = useSelector((state) => state.todolist.detailList);
   const items = useSelector((state) => state.todolist.items);
   let params = useParams();
@@ -23,7 +28,18 @@ const Details = () => {
     dispacth(delItem(id, detailList.id));
   };
   const createItems = (data) => {
-    dispacth(creaateItem(data, detailList.id));
+    dispacth(createItem(data, detailList.id));
+  };
+  const updateItems = (data, checked, formChecked = false) => {
+    if (formChecked) {
+      let newData = {
+        ...data,
+        is_active: checked ? 0 : 1,
+      };
+      dispacth(updateItem(newData, detailList.id));
+    } else {
+      dispacth(updateItem(data, detailList.id));
+    }
   };
   return (
     <div className="container">
@@ -64,6 +80,12 @@ const Details = () => {
                 data-cy="activity-add-button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
+                onClick={() =>
+                  setIsUpdate({
+                    isUpdate: false,
+                    data: {},
+                  })
+                }
               >
                 <img
                   className="icon-sort"
@@ -80,7 +102,14 @@ const Details = () => {
             <div className="col-12">
               {items.length ? (
                 items?.map((v, i) => (
-                  <Lists key={i} data={v} deleteItems={deleteItems} />
+                  <Lists
+                    key={i}
+                    update={update}
+                    data={v}
+                    updateItems={updateItems}
+                    deleteItems={deleteItems}
+                    setIsUpdate={setIsUpdate}
+                  />
                 ))
               ) : (
                 <div className="col-12">
@@ -91,7 +120,11 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <Modal createItems={createItems} detailList={detailList} />
+      <Modal
+        update={update}
+        createItems={createItems}
+        updateItems={updateItems}
+      />
     </div>
   );
 };

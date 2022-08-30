@@ -2,12 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const Modal = ({ createItems, detailList }) => {
+const Modal = ({ update, createItems, updateItems }) => {
   const [selected, setSelected] = useState({
     title: "Very High",
     value: "very-high",
   });
-  const [select] = useState([
+  const [select, setSelect] = useState([
     {
       title: "Very High",
       value: "very-high",
@@ -33,15 +33,35 @@ const Modal = ({ createItems, detailList }) => {
     title: "",
     priority: "",
   });
-
   const getValue = () => {
-    createItems(inputs);
+    if (update.isUpdate) {
+      let newData = {
+        ...update.data,
+        ...inputs,
+      };
+
+      updateItems(newData);
+    } else {
+      createItems(inputs);
+    }
   };
   useEffect(() => {
     if (!inputs.priority.length) {
       setInputs({ ...inputs, priority: selected.value });
+      console.log("4");
     }
+    console.log("3");
   }, [selected, inputs]);
+  useEffect(() => {
+    if (update.isUpdate) {
+      let news = select.find((v) => v.value === update.data.priority);
+      setInputs({ title: update.data.title, priority: news.value });
+      setSelected(news);
+      console.log("1");
+    }
+    console.log("2");
+  }, [update, select]);
+
   return (
     <div
       className="fade modal-add-activity modal modal-lg"
@@ -81,6 +101,7 @@ const Modal = ({ createItems, detailList }) => {
                       title: e.target.value,
                     })
                   }
+                  value={update.isUpdate ? inputs.title : ""}
                   placeholder="Tambahkan nama Activity"
                   id="AddFormTitle"
                   className="form-control"
